@@ -7,3 +7,13 @@
 * `spring.cloud.config.name` - can be used instead of spring.application.name to name first part of the needed file
 * `spring.profiles.active` - standard spring field. For client application this values can be loaded in the order of enumeration. 
   When there are default property (application.properties) and profiled settings (application-profile.properties) then at the beginning default is loaded and profiled after.
+
+
+There is a compatibility matrix of Spring-boot and Spring-cloud. https://spring.io/projects/spring-cloud#overview
+
+For current moment
+
+| Boot version | Cloud version |
+|--------------|---------------|
+| 2.5.4        | 2020.0.5      |
+| 2.6.4        | 2021.0.1      |
