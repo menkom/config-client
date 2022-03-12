@@ -15,3 +15,8 @@ spring:
 #    name: config-client #main field as part of property file name to choose settings but preferable is name from spring.cloud.config.name
 application:
   customer: cash
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh

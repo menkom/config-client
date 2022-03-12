@@ -17,3 +17,17 @@ For current moment
 |--------------|---------------|
 | 2.5.4        | 2020.0.5      |
 | 2.6.4        | 2021.0.1      |
+
+###Refreshable without restart
+
+To make it possible to update settings without restart of client application you need to 
+
+1. Add `spring-boot-starter-actuator` dependency to gradle or maven file
+2. Turn on refresh option for necessary endpoints in application.properties 
+at property `management.endpoints.web.exposure.include` (* - all of them or enumerate needed from `refresh`, `bus-refresh`, `beans`, `env`) 
+or exclude with property `management.endpoints.web.exposure.exclude`.
+3. Add `@RefreshScope` annotation on bean to refresh `@Value`. For properties with `@ConfigurationProperties` use of `@RefreshScope` is redundant.
+
+Notice:
+1. If property is not covered with `@RefreshScope` or `@ConfigurationProperties` then you have to restart application to update its' value.
+2. If you don't need to load properties only on start then you don't need all this settings 
