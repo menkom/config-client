@@ -1,22 +1,13 @@
 spring:
   config:
-    import: optional:configserver:http://localhost:8888 #instead of legacy bootstrap use. "optional" allows run application without config server if spring.cloud.config.enabled is true
-  cloud:
-    config:
-#      uri: http://localhost:8888 legacy solution
-      username: root
-      password: s3cr3t
-      enabled: true # check running config server and existence of needed configuration on it. false - don't start app when server is not available
-      label: master #optional field of file name component on server. Is used as git branch name.
-      name: config-client #, config-client2 #spring.cloud.config.name can be used instead of spring.application.name to name first part of the needed file
-  profiles:
-    active: production #one of file name component on server
+    import: optional:aws-secretsmanager:/ # To load application running from local machine you need two correct setting files (config, credentials) in c:\Users\User\.aws\ folder
 #  application:
-#    name: config-client #main field as part of property file name to choose settings but preferable is name from spring.cloud.config.name
+#    name: config-client
 application:
   customer: cash
-management:
-  endpoints:
-    web:
-      exposure:
-        include: refresh
+aws:
+  secretsmanager:
+    enabled: false
+    prefix:
+    name: config-client
+    profile-separator: "-"
